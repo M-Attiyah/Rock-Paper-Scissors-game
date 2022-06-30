@@ -4,10 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
     
+    <div class="container">
+        <header>
+            <h2>Rock Paper Scissors</h2>
+        </header>
+    
+        <main>
+            <div class="scores">
+                <div class="player">
+                    <span class="score">0</span>
+                    <span class="title">player</span>
+                </div>
+                <div class="computer">
+                    <span class="score">0</span>
+                    <span class="title">computer</span>
+                </div>
+            </div>
+            <div class="buttons">
+                <button>rock</button>
+                <button>paper</button>
+                <button>scissors</button>
+            </div>
+        </main>
+    
+        <div class="message">
+            <p>choose one of cards</p>
+        </div>
+
+        <div class="result">
+            <p>this message will display who win</p>
+            <button>Play Again!</button>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>

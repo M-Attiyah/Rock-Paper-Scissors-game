@@ -16,61 +16,68 @@ function computerSelection() {
  */
 
 function playerSelection() {
-    const enterSelection = prompt('Enter selection');
-    const lowerCase = enterSelection.toLowerCase();
-    if (lowerCase === 'rock' || lowerCase === 'paper' || lowerCase === 'scissors') {
-        return lowerCase;
-    } else {
-        console.log('Your selection must be only (rock, paper, scissors)');
-    }
+    const buttons = document.querySelectorAll('.buttons button');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', e => {
+            playRound(e.target.textContent);
+        })
+    })
 }
+playerSelection()
 
 /**
  * Play Round
  */
 
+const displayPlayerScore = document.querySelector('.scores .player .score');
+const displayComputerScore = document.querySelector('.scores .computer .score');
+const message = document.querySelector('.message p');
 let computerPoints = 0;
 let playerPoints = 0;
 
-function playRound() {
+function playRound(playerSelection) {
     const computer = computerSelection();
-    const player = playerSelection();
+    const player = playerSelection;
 
     if (computer === player) {
-        console.log('Tie');
+        message.textContent = `Tie Game ( ${player} - ${computer} )`
     }  else if (computer === 'rock' && player === 'scissors') {
-        console.log(`You Lose, ${computer} beats ${player}`);
-        ++computerPoints;
+        message.textContent = `You Lose, ${computer} beats ${player}`;
+        displayComputerScore.textContent = ++computerPoints;
     } else if (computer === 'scissors' && player === 'paper') {
-        console.log(`You Lose, ${computer} beats ${player}`);
-        ++computerPoints;
+        message.textContent = `You Lose, ${computer} beats ${player}`;
+        displayComputerScore.textContent = ++computerPoints;
     } else if (computer === 'paper' && player === 'rock') {
-        console.log(`You Lose, ${computer} beats ${player}`);
-        ++computerPoints;
+        message.textContent = `You Lose, ${computer} beats ${player}`;
+        displayComputerScore.textContent = ++computerPoints;
     } else {
-        console.log(`You Win, ${player} beats ${computer}`);
-        ++playerPoints;
+        message.textContent = `You Win, ${player} beats ${computer}`;
+        displayPlayerScore.textContent = ++playerPoints;
     }
+
+
+    const result = document.querySelector('.result');
+    const resultMessage = document.querySelector('.result p');
+    const playAgainButton = document.querySelector('.result button');
+
+    if (computerPoints >= 5) {
+        result.style.display = 'flex';
+        resultMessage.textContent = 'You Lose The Game 😔😥'
+    }
+
+    if (playerPoints >= 5) {
+        result.style.display = 'flex';
+        resultMessage.textContent = 'You Win The Game 😁😀'
+    }
+
+    playAgainButton.addEventListener('click', e => {
+        result.style.display = 'none';
+        displayPlayerScore.textContent = '0';
+        displayComputerScore.textContent = '0';
+        message.textContent = 'choose one of cards';
+        computerPoints = 0;
+        playerPoints = 0;
+    })
 }
 
-
-/**
- * Game
- */
-
-function game() {
-    for (let i = 1; i <= 5; i++) {
-        playRound();
-
-        // final round 
-        if (i === 5) {
-            if (playerPoints > computerPoints) {
-                console.log(`Whooohooo, You Win The Game`);
-                console.log(`You: ${playerPoints} vs Com: ${computerPoints}`);
-            } else {
-                console.log('oh sorry, You Lose The Game');
-            }
-        }
-    }
-}
 

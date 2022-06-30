@@ -1,0 +1,62 @@
+understand the problem
+- create program that can user enter one of (rock, paper, scissors)
+  and the computer select one, then compare the two selections
+  to get the winner, if compter win print "You Lose! Paper beats Rock"
+
+plan
+  * does the program have an interface ? what will look like ?
+    the program will be in browser
+
+  * what inputs your program have ?
+    the user will enter selection in prompt
+  
+  * what's the desired output ?
+    the user enter selection, and the computer choose random 
+    selection, and then take the two selections, and compare 
+    them to get the winner
+    the final result must be 'You loose, rock beats scissors'
+    or 'You win, scissors beats paper
+  
+  * given your inputs. what is the steps necessary to return the desired output ?
+    * computer
+      - create function 'computerSelection'
+      - declare variable and store into it array
+      - the array must have 3 values ['rock', 'paper', 'scissors']
+      - declare variable to create random select, and choose the array to be the main source of selections 
+      - return the selection 
+
+    * player
+      - create function 'playerSelection'
+      - declare variable and store the prompt into it 
+      - make the value case sensetive
+        - check if the value like (rock, ROCK, RocK)
+        - return the value with lowercase 
+      - return the variable 
+
+    * playRound
+      * the main idea from creating this function, 
+        it can make conditions and return different outputs
+        - create function 'playRound'
+        - store the computer, player values into a two variables
+        - Start the conditions
+          - if computer === player -> 'Tie Game'
+          - if computer === 'rock' & player === 'scissors' -> 'You Lose, rock beats scissors'
+          - if computer === 'scissors' & player === 'paper' -> 'You Lose, scissors beats paper'
+          - if computer === 'paper' & player === 'rock' -> 'You Lose paper beats rock'
+          - otherwise -> 'Your input must be (rock or paper or scissors)'
+    
+    * game 
+      * the main idea from creating this function,
+        it will count the rounds, and if end, will print the winner
+
+      * the main problem here is, when call the function in loop 
+        it return the value 5 times, not iteration
+
+      *** i founded the solution, is declare the prompt in loop block, to iterate
+
+        - create for loop block with, (let i = 1; i <= 5; i++)
+        - declare two variables to track the points for computer and player
+        - call the playerSelection function inside the loop block 
+        - if the loop number is 5, check which one have higher points
+          - if player > computer -> 'You Win'
+          - otherwise -> 'You lose' 
